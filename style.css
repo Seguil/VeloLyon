@@ -1,0 +1,330 @@
+/*style général de la page*/
+body {
+    font-family: 'Montserrat Alternates', 'Comic Sans Ms', Arial, sans-serif;
+    margin: 0;
+    color: #276e73;
+    position: relative;
+}
+
+a {
+    color: #276e73;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+button {
+    background-color:  rgb(39, 110, 115);
+    border: 1px rgb(31, 93, 96) solid;
+    border-radius: 25px;
+    color: white;
+    transition: all 100ms;
+    padding: 1vh 1vw;
+    font-size: 1em;
+    margin-top: 2vh;
+}
+
+button:hover {
+    background-color: rgb(231, 130, 0);
+    border: 1px rgb(192, 109, 1) solid;
+}
+
+body,
+main,
+#fonctionnement,
+#slideshow {
+    display: flex;
+    flex-direction: column;
+}
+/*fin style général de la page*/
+
+
+
+/*----------------------HEADER-------------------------*/
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+#presentation {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 0;
+    box-shadow: 0vw 0.5vh 10px rgba(94, 93, 93, 0.3);
+    background-color: rgba(242, 223, 174, 0.2);
+
+}
+
+.logo {
+    width: 8vw;
+    margin-left: 1vw;
+}
+
+h1 {
+    width: 85vw;
+    text-align: center;
+    font-size: 2.4em;
+    font-weight: bolder;
+    margin-top: 2vh;
+}
+
+
+/*-----------------------MAIN-------------------------------*/
+
+/*----Fonctionnement: slide----*/
+#slideshow {
+    align-items: center;
+    margin-top: 4vh;
+    position: relative;
+}
+
+#legend {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bolder;
+    height: 7vh;
+    width: 80vw;
+    align-items: center;
+}
+
+#slides {
+    display: flex;
+    justify-content: center;
+    max-width: 80vw;
+    max-height: 80vh;
+    box-shadow: 0.5vw 0.5vh 10px rgba(94, 93, 93, 0.3);
+}
+
+#prevBtn,
+#pauseBtn,
+#playBtn,
+#nextBtn {
+    position: absolute;
+    z-index: 10;
+}
+
+#prevBtn,#nextBtn {
+    top: 55%;
+    font-size: 4vw;
+}
+
+#prevBtn {
+    left: 5vw;
+}
+
+#nextBtn {
+    right: 5vw;
+}
+
+#pauseBtn,
+#playBtn {
+    left: 45%;
+    bottom: -15%;
+    font-size: 2vw;
+}
+
+#pauseBtn {
+    margin-left: 8vw;
+}
+
+/*----Fonctionnement: transition----*/
+.transition {
+    display: flex;
+    justify-content: center;
+    font-size: 4vw;
+    color:  #e78200;
+    margin-top: 16vh;
+}
+
+#transition_down {
+    display: flex;
+    color:  rgba(231, 130, 0, 0.8);
+}
+
+#transition_up {
+    display: none;
+    color:  rgba(231, 130, 0, 0.8);
+}
+
+.transition:hover {
+    animation: animation_i 1s infinite;
+}
+
+@keyframes animation_i {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(1vh);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/*----Section----*/
+section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 9vh;
+}
+
+/*----Section article----*/
+article {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+/*----Section article Carte----*/
+#macarte {
+    height: 60vh;
+    width: 100vw;
+    margin-left: 2vw;
+}
+
+/*----Section article Voile----*/
+#voilebleu {
+    display: none;
+	position: absolute;
+	top: 0;
+    left: 2vw;
+	height: 60vh;
+	width: 96vw;
+	background-color: rgba(31, 198, 222, 0.2);
+    pointer-events: none;
+    z-index: 998;
+}
+
+/*----Section article infostations----*/
+#infostations {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.5em;
+    padding: 2vh 2vw;
+    text-align: center;
+    max-height: 60vh;
+    width: 30vw;
+}
+
+table {
+    display: flex;
+    flex-direction: column;
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(242, 223, 174, 0.4);
+}
+
+tr {
+    height: 6vh;
+}
+
+th {
+    width: 10vw;
+    padding: 1vh;
+}
+
+td {
+    width: 20vw;
+}
+
+#status {
+    font-weight: bolder;
+    text-align: center;
+    color: #e78200;
+}
+
+#reservation_button {
+    visibility: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*----Section article Formulaire----*/
+label {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+input[type=text] {
+    color: #e78200;
+    background-color: #F4F4F4;
+    height: 3vh;
+    font-size: 1.3em;
+    border: 2px rgb(31, 93, 96) solid;
+    padding-left: 0.5vw;
+}
+
+#formulaire {
+    position: absolute;
+    flex-direction: column;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+    background-color: #F4F4F4;
+    padding: 2vh 2vw;
+    border-radius: 10px;
+    visibility: hidden;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40vh;
+}
+
+canvas {
+    border: 2px rgb(31, 93, 96) solid;
+    background-color: #F4F4F4;
+}
+
+#clear,
+#submit_button,
+#annulation_button {
+    padding: 0.5vh 0.5vw;
+    font-size: 0.9em;
+}
+
+#clear {
+    position: absolute;
+    right: 2vw;
+    top: 21vh;
+    margin-top: 0;
+}
+
+#annulation_button {
+    margin-right: 2vw;
+}
+
+/*----Section footer----*/
+#reservation_etat {
+    text-align: center;
+    align-items: center;
+    margin-top: 2vh;
+    max-height: 10vh;
+}
+
+#reservation_timer {
+    font-size: 1.3em;
+}
+
+#annulation_reservation {
+    visibility: hidden;
+}
+
+/*-----------------------FOOTER-------------------------------*/
+#footer_page {
+    background-color: rgba(242, 223, 174, 0.4);
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+}
+

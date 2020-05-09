@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width"/>
+        <title>VéloLyon</title>
+        <link rel="shortcut icon" href="images/logos/favicon5.png"/>
+
+        <!--Référencement-->
+        <meta name="author" content="GUILLEMIN Séverine"/>
+        <meta name="keywords" content="Lyon, vélo, location, réservation, station"/>
+        <meta name="description" content="Réservez votre vélo dans la ville de Lyon et récupérez-le dans les 20 minutues."/>
+        <meta name="google-site-verification" content="Td3wULqPmNE59IGrAixft0DJWjw_tuuSgnG74kesWrc" />
+
+        <!--Facebook-->
+        <meta property="og:title" content="VéloLyon"/>
+        <meta property="og:description" content="Réservez votre vélo dans la ville de Lyon et récupérez-le dans les 20 minutues."/>
+        <meta property="og:image" content="http://velolyon.webguillemin.fr/images/logos/logo2.png"/>
+        <meta property="og:url" content="http://velolyon.guillemin.fr"/>
+
+        <!--Twitter-->
+        <meta name = "twitter:card" content="summary"/>
+        <meta name="twitter:site" content="@VéloLyon"/>
+        <meta name="twitter:title" content="VéloLyon"/>
+        <meta name="twitter:image:src" content="http://velolyon.webguillemin.fr/images/logos/logo2.png"/>
+        <meta name="twitter:description" content="Réservez votre vélo dans la ville de Lyon et récupérez-le dans les 20 minutues."/>
+    
+        <!--Style-->
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style_media.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/968601638e.js" crossorigin="anonymous"></script>
+        
+        <!--Fichier css qui renvoie à leaflet-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+
+        <!--Fichier css qui renvoie aux markercluster de leaflet-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+    </head>
+
+    <body>
+        <header id="header">
+            <div id="presentation">
+                <a href="#fonctionnement"><img class="logo" src="images/logos/logo2.png" alt="Logo de VéloLyon"/></a>
+                <h1>Réservation en ligne de votre vélo'v sur la ville de Lyon</h1>
+            </div>
+
+            <div id="fonctionnement">
+                <div id="slideshow">
+                    <div id="legend"></div>
+                    <div id="slides"> </div>
+                    <div class="button">
+                        <a href="#" id="prevBtn"><i class="fas fa-angle-left"></i></a>
+                        <a href="#" id="pauseBtn"><i class="fas fa-pause"></i></a>
+                        <a href="#" id="playBtn" class="next"><i class="fas fa-play"></i></a>
+                        <a href="#" id="nextBtn" class="next"><i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="transition">
+                    <i id="transition_down" class="fas fa-angle-double-down"></i>
+                    <i id="transition_up" class="fas fa-angle-double-up"></i>
+                </div>
+            </div>
+        </header>
+
+
+        <main>
+            <section>
+                <article>
+                    <div id="macarte"></div>
+                    <div id="voilebleu"></div>
+                    <div id="infostations">
+                        <h2>Informations sur la station</h2>
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Station</th>
+                                    <td id="name_station"></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Adresse</th>
+                                    <td id="address_station"></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Nombre d'emplacements</th>
+                                    <td id="bike_stands"></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Nombre de vélos disponibles</th>
+                                    <td id="available_bikes"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div id="status">
+                            <p>Pour effectuer une réservation,<br>
+                            veuillez sélectionner une station.</p>
+                        </div>
+                        <button id="reservation_button">Réserver</button>
+                    </div>
+
+                    <div id="formulaire">
+                        <form id="form" method="post" action="reservation.php">
+                            <label for="idname">Nom</label>
+                                <input id="idname" type="text" name="nom"/>
+                            <label for="idfirstname">Prénom</label>
+                                <input id="idfirstname" type="text" name="prenom"/>
+                            <label >Signature</label>
+                                <canvas id="sign_reservation"></canvas>
+                        </form>
+                        <button id="clear">Effacer</button>
+                        <button id="annulation_button">Annuler</button>
+                        <button id="submit_button">Valider</button>
+                    </div>
+                 </article>
+                
+                 <footer id="footer_article">
+                   <div id="reservation_etat">
+                        <div id="reservation_timer">
+                            <p>Vous n'avez aucune réservation en cours actuellement.</p>
+                        </div>
+                        <button id="annulation_reservation">Annuler la réservation</button>                       
+                    </div>
+                </footer>
+           </section>
+       </main>
+
+
+        <footer id="footer_page">
+            <a href="#" id="mentions">Mentions légales</a>
+        </footer>
+        
+         
+        <!--Fichiers js-->
+        <script src="slider.js"></script>
+        <script src="ajax.js"></script>
+        
+        <!--Fichier js qui renvoie à leaflet et qui doit être stocké après le fichier css / Cette balise permet de charger la librairie-->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+                integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+                crossorigin=""></script>
+        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+        <script src="map.js"></script>
+        <script src="canvas.js"></script>
+        <script src="timer.js"></script>
+        <script src="main.js"></script>
+        <script src="globallistener.js"></script>
+
+
+    </body>
+</html>
